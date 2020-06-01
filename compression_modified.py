@@ -23,7 +23,8 @@ import numpy as np
 import tensorflow_datasets as tfds
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
+for i in range(len(physical_devices)):
+    tf.config.experimental.set_memory_growth(physical_devices[i], True)
 import math
 
 
@@ -50,7 +51,7 @@ import sys
 # for reading the config file
 import configparser
 config = configparser.ConfigParser()
-config.read('variables.ini')
+config.read(sys.argv[1])
 
 # set variables
 IMAGE_SIZE = (int(config['Image Size']['width']), int(config['Image Size']['length']))
@@ -60,10 +61,10 @@ BATCH_SIZE_PER_GPU = int(config['Other']['batch size per gpu'])
 global_batch_size = (BATCH_SIZE_PER_GPU * 1)
 NUM_CLASSES = int(config['Other']['number of classes'])
 EPOCHS = int(config['Other']['epochs'])
-NUM_PROC = int(config['Other']['num_proc'])
+NUM_PROC = int(config['Other']['num proc'])
 
 # import functions from util file
-from utils_modified.py import *
+from utils_modified import *
 
 #%% 
 # Dataset code
