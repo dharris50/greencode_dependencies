@@ -21,7 +21,7 @@ date
 
 
 trap 'kill %1, kill %2' SIGINT
-./cpuLogToFile 1 test 10 &  
+./dependencies/cpuLogToFile 1 test 10 &  
 
 python ./gpuProfiling.py 1 test 10 &
 
@@ -29,7 +29,7 @@ python ./gpuProfiling.py 1 test 10 &
 python ./user_code.py 
 
 sudo pkill cpuLogToFile
-sudo pkill -f ./gpuProfiling.py
+sudo pkill -f ./dependencies/gpuProfiling.py
 
 #The measurement will end when $3 time out or user program returns or terminated by the keyboard 'Ctrl + C' 
 
