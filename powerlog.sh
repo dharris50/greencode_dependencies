@@ -23,7 +23,7 @@ date
 trap 'kill %1, kill %2' SIGINT
 ./dependencies/cpuLogToFile 1 test 10 &  
 
-python ./gpuProfiling.py 1 test 10 &
+python ./dependencies/gpuProfiling.py 1 test 10 &
 
 #user program command goes here 
 python ./user_code.py 
